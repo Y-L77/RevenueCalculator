@@ -3,31 +3,36 @@ import java.util.Scanner;
 public class Main{
     
 
-    public static int menuRepeaterLogic = 0;
-    public static int InputDataRepeaterLogic = 1;
+    public static boolean menuRepeaterLogic = true;
+    public static boolean InputDataRepeaterLogic = false;
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args){
         
-        while(menuRepeaterLogic == 0){
-            menuRepeaterLogic = 1;
+        while(menuRepeaterLogic){
+            menuRepeaterLogic = false;
             RunMenu();
         }
     }
     public static void InputData(){
-        while(InputDataRepeaterLogic == 0){
-            InputDataRepeaterLogic = 1;
-            System.out.println("do you want to submit your hours worked, money earned or gigs completed?");
+        while(InputDataRepeaterLogic){
+            System.out.println("do you want to submit your hours worked, money earned, gigs completed, or go back?");
             String InputDataChoice = sc.nextLine().toUpperCase();
     
             switch(InputDataChoice){
                 default:
-                    System.out.println("The only valid inputs are hours, money or gigs");
-                    InputDataRepeaterLogic = 0;
+                    System.out.println("The only valid inputs are hours, money, gigs or back");
                     break;
                 case "HOURS":
                     System.out.println("How many hours have you worked?");
                     double amount = sc.nextDouble();
+                    sc.nextLine();
                     StoredData.addHours(amount);
+                    System.out.println("Added " + amount + " To your hours worked! your total hours is now at " + StoredData.getHours() + "!");
+                    break;
+                case "BACK":
+                    InputDataRepeaterLogic = false;
+                    RunMenu();
+
                     
             }
         }
@@ -39,11 +44,12 @@ public class Main{
         StoredData.getHours();
     }
     public static void WrongInputErrorException(){
-        System.out.println("Only valid inputs are inputdata or stats.");
-        menuRepeaterLogic = 0;
+        System.out.println("Only valid inputs are inputdata, stats or exit.");
+        menuRepeaterLogic = true;
+        RunMenu();
     }
     public static void RunMenu(){
-        System.out.println("would you like to input data or check stats?");
+        System.out.println("would you like to input data, check stats, or exit the program?");
         String userMenuChoice = sc.nextLine().toUpperCase();
 
         switch(userMenuChoice){
@@ -51,11 +57,17 @@ public class Main{
             WrongInputErrorException();
             break;
             case "INPUTDATA":
-                InputDataRepeaterLogic = 0;
+                InputDataRepeaterLogic = true;
+                InputData();
                 break;
             case "STATS":
                 Stats();
                 break;
+            case "EXIT":
+                System.out.println("You've exited the program :(");
+                System.exit(0);
+                break;
+
 
 
             /*case "INPUTDATA" -> InputData();
