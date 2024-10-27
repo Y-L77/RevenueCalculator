@@ -12,5 +12,5 @@ October 27th
 Hello, it's still 11:30 on the 26th but you best get to work tomorrow or else ill be poor and unsucessful.
 
 Ok, I fixed the loop logic and it's flowing a lot better. I'll need to expand the functions later but right now it's looking pretty modular. After I finish expanding the base I've already created I'll probably think of more features and intergrate the ones I'm thinking right now like calculating average wage.
-
+Git is being difficult right now I'm going to create this change so I can update it
 
