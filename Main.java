@@ -39,10 +39,14 @@ public class Main{
     }
 
     public static void Stats(){
-        System.out.println("Hello you have chosen Stats"); //work on later
-        //temp for testing, delete me later!
-        StoredData.getHours();
-    }
+        if(StoredData.getHours() < 0){
+            System.out.println("Hours done: N/A, You have either done no hours or have a negative amount of hours done.");
+        }
+        else{
+            System.out.println("Hours done:" + StoredData.getHours());
+        }
+        RunMenu();
+        }
     public static void WrongInputErrorException(){
         System.out.println("Only valid inputs are inputdata, stats or exit.");
         menuRepeaterLogic = true;
